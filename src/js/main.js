@@ -36,6 +36,7 @@ form.addEventListener('submit', event => {
       iziToast.error({
         title: 'Error',
         message: 'An error accured!',
+        position:"topCenter"
       });
     });
 });
