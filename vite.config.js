@@ -9,7 +9,7 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
-    base: '/beatifultango/goit-js-hw-11/',
+    base: '/https://github.com/beatifultango/goit-js-hw-11/',
     root: 'src',
     build: {
       sourcemap: true,
