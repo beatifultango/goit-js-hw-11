@@ -43,15 +43,20 @@ form.addEventListener('submit', event => {
 
 function showImages(images) {
   const container = document.getElementById('images-place');
-  container.innerHTML = '';
-  images.forEach(image => {
-    const imgItem = document.createElement('img');
-    imgItem.src = image.webformatURL;
-    imgItem.alt = image.tags;
-    imgItem.style.width = '360px';
-    imgItem.style.height = '200px';
-    imgItem.style.margin = '5px';
-
-    container.appendChild(imgItem);
-  });
+  container.innerHTML = '<p id="loadingText">Loading images,please wait...</p>';
+  setTimeout(()=>{
+    container.innerHTML="";
+    images.forEach(image => {
+      const imgItem = document.createElement('img');
+      imgItem.src = image.webformatURL;
+      imgItem.alt = image.tags;
+      imgItem.style.width = '360px';
+      imgItem.style.height = '200px';
+      imgItem.style.margin = '5px';
+  
+      container.appendChild(imgItem);
+    });
+  },5000)
 }
+  
+
