@@ -46,9 +46,8 @@ function showImages(images) {
     container.innerHTML = '';
     images.forEach(image => {
       const imgItem = document.createElement('img');
-      // const imgCard=document.createElement("div");
-      // imgCard.style.width="360px";
-      // imgCard.style.height ="48px";
+      
+      
 
       imgItem.src = image.webformatURL;
       imgItem.alt = image.tags;
@@ -57,7 +56,7 @@ function showImages(images) {
       imgItem.style.margin = '5px';
 
       container.appendChild(imgItem);
-      // imgItem.appendChild(imgCard);
+     
     });
   }, 2000);
 }
