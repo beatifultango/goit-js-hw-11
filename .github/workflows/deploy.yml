@@ -1,23 +1,32 @@
-name: Build and deploy to GitHub Pages
+name: Deploy Vite Project to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main  # Main branch'e her push'ta çalıştır
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Install and build 🔧
-        run: |
-          npm install
-          npm run build
+      - name: Set up Node.js
+        uses: actions/setup-node@v18
+        with:
+          node-version: 18
+          cache: 'npm'
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: dist

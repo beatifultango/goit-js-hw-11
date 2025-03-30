@@ -51,5 +51,5 @@
   width: 1128px;
   height: 200px;
   display: grid;
-  grid-template-colums: auto;
+  grid-template-columns: auto;
 }

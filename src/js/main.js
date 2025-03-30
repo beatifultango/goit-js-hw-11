@@ -1,7 +1,7 @@
 // Dokümantasyonda belirtilen import
 import iziToast from 'izitoast';
 // Stil importu
-import "izitoast/dist/css/iziToast.min.css";
+import 'izitoast/dist/css/iziToast.min.css';
 const form = document.querySelector('form');
 const search = document.getElementById('search');
 const APIKey = '49595160-f5e6f0105167835ee326e8279';
@@ -23,7 +23,7 @@ form.addEventListener('submit', event => {
   fetch(
     `https://pixabay.com/api/?key=${APIKey}&q=${callingImage}&image_type=photo&orientation=horizontal&safesearch=true&per_page=9`
   )
-    .then(response=>response.json())
+    .then(response => response.json())
     .then(data => {
       console.log(data);
       showImages(data.hits);
@@ -39,7 +39,6 @@ form.addEventListener('submit', event => {
     });
 });
 
-
 function showImages(images) {
   const container = document.getElementById('images-place');
   container.innerHTML = '<p id="loadingText">Loading images,please wait...</p>';
@@ -47,6 +46,10 @@ function showImages(images) {
     container.innerHTML = '';
     images.forEach(image => {
       const imgItem = document.createElement('img');
+      // const imgCard=document.createElement("div");
+      // imgCard.style.width="360px";
+      // imgCard.style.height ="48px";
+
       imgItem.src = image.webformatURL;
       imgItem.alt = image.tags;
       imgItem.style.width = '360px';
@@ -54,6 +57,7 @@ function showImages(images) {
       imgItem.style.margin = '5px';
 
       container.appendChild(imgItem);
+      // imgItem.appendChild(imgCard);
     });
   }, 2000);
 }
