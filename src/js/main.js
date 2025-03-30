@@ -58,5 +58,5 @@ function showImages(images) {
       container.appendChild(imgItem);
      
     });
-  }, 2000);
+  }, 500);
 }
