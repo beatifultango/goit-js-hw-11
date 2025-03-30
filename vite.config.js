@@ -37,6 +37,7 @@ export default defineConfig(({ command }) => {
       outDir: '../dist',
       emptyOutDir: true,
     },
+    base: '/beatifultango/goit-js-hw-11/',
     plugins: [
       injectHTML(),
       FullReload(['./src/**/**.html']),
