@@ -9,6 +9,7 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
+    base: '/beatifultango/goit-js-hw-11/',
     root: 'src',
     build: {
       sourcemap: true,
@@ -37,7 +38,7 @@ export default defineConfig(({ command }) => {
       outDir: '../dist',
       emptyOutDir: true,
     },
-    base: '/beatifultango/goit-js-hw-11/',
+    
     plugins: [
       injectHTML(),
       FullReload(['./src/**/**.html']),
