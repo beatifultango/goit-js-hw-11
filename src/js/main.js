@@ -3,14 +3,14 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 // Stil importu
 import 'izitoast/dist/css/iziToast.min.css';
-axios.defaults.baseURL = 'https://pixabay.com';
+axios.defaults.baseURL = 'https://pixabay.com/api/';
 
 const form = document.querySelector('form');
 const search = document.getElementById('search');
-const btn = document.getElementById('submit-btn');
 const APIKey = '49595160-f5e6f0105167835ee326e8279';
 form.addEventListener('submit', event => {
   event.preventDefault();
+  search.value = '';
   const callingImage = search.value.trim();
   if (!callingImage) {
     iziToast.error({
@@ -24,7 +24,7 @@ form.addEventListener('submit', event => {
   }
   axios
     .get(
-      `/api/?key=${APIKey}&q=${callingImage}&image_type=photo&orientation=horizontal&safesearch=true&per_page=9`
+      `?key=${APIKey}&q=${callingImage}&image_type=photo&orientation=horizontal&safesearch=true&per_page=9`
     )
     .then(response => {
       console.log(response.data);
@@ -32,11 +32,11 @@ form.addEventListener('submit', event => {
     })
 
     .catch(error => {
-      console.error('API Hatası:', error);
+      console.error('API Error:', error);
       iziToast.error({
         title: 'Error',
         message: 'An error accured!',
-        position:"topCenter"
+        position: 'topCenter',
       });
     });
 });
@@ -51,6 +51,7 @@ function showImages(images) {
     imgItem.style.width = '360px';
     imgItem.style.height = '200px';
     imgItem.style.margin = '5px';
+
     container.appendChild(imgItem);
   });
 }
