@@ -44,19 +44,33 @@ function showImages(images) {
   container.innerHTML = '<p id="loadingText">Loading images,please wait...</p>';
   setTimeout(() => {
     container.innerHTML = '';
-    images.forEach(image => {
-      const imgItem = document.createElement('img');
-      
-      
+    container.style.display="grid";
+    container.style.grid="inline";
 
-      imgItem.src = image.webformatURL;
-      imgItem.alt = image.tags;
-      imgItem.style.width = '360px';
-      imgItem.style.height = '200px';
+    images.forEach(image => {
+      const imgItem = document.createElement('div');
+      const img = document.createElement('img');
+      const imgInfo = document.createElement('div');
+      imgInfo.innerHTML = `
+      <p class="likes"><strong>Likes</strong><br>${image.likes}</p>
+      <p class="views"><strong>Views</strong><br>${image.views}</p>
+      <p class="comments"><strong>Comments</strong><br>${image.comments}</p>
+      <p class="downloads"><strong>Downloads</strong><br>${image.downloads}</p>
+      `;
+      imgInfo.style.display = 'flex';
+      imgInfo.style.justifyContent = 'space-around';
+
+      img.src = image.webformatURL;
+      img.alt = image.tags;
+      img.style.width = '360px';
+      img.style.height = '200px';
       imgItem.style.margin = '5px';
+      imgItem.appendChild(img);
+      imgItem.appendChild(imgInfo);
+      imgItem.style.border = '1px solid gray';
 
       container.appendChild(imgItem);
-     
+      search.value = '';
     });
   }, 500);
 }
