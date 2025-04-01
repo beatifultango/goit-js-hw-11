@@ -2,6 +2,7 @@
 import iziToast from 'izitoast';
 // Stil importu
 import 'izitoast/dist/css/iziToast.min.css';
+import simpleLightbox from 'simplelightbox';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
@@ -68,6 +69,7 @@ function showImages(images) {
       `;
       imgInfo.style.display = 'flex';
       imgInfo.style.justifyContent = 'space-around';
+      imgItem.classList.add('imgItem');
 
       img.src = image.webformatURL;
       img.alt = image.tags;
@@ -86,5 +88,20 @@ function showImages(images) {
       imgItem.appendChild(imgInfo);
       search.value = '';
     });
+    lightbox.refresh();
   }, 500);
 }
+let lightbox = new SimpleLightbox('.imgItem a', {
+  captions: true,
+  captionsData: 'alt',
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('click', e => {
+    if (e.target.closest('.imgItem a')) {
+      e.preventDefault();
+
+      lightbox.open(e.target.closest('.imgItem a'));
+    }
+  });
+});
