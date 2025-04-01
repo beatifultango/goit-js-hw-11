@@ -2,9 +2,14 @@
 import iziToast from 'izitoast';
 // Stil importu
 import 'izitoast/dist/css/iziToast.min.css';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 const form = document.querySelector('form');
 const search = document.getElementById('search');
 const APIKey = '49595160-f5e6f0105167835ee326e8279';
+form.style.display = 'block';
+
 form.addEventListener('submit', event => {
   event.preventDefault();
 
@@ -44,13 +49,17 @@ function showImages(images) {
   container.innerHTML = '<p id="loadingText">Loading images,please wait...</p>';
   setTimeout(() => {
     container.innerHTML = '';
-    container.style.display="grid";
-    container.style.grid="inline";
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns =
+      'repeat(auto-fit, minmax(360px, 1fr))';
 
     images.forEach(image => {
-      const imgItem = document.createElement('div');
+      const imgArea = document.createElement('ul');
+      const imgItem = document.createElement('li');
+      const imgLink = document.createElement('a');
       const img = document.createElement('img');
       const imgInfo = document.createElement('div');
+      imgLink.href = image.largeImageURL;
       imgInfo.innerHTML = `
       <p class="likes"><strong>Likes</strong><br>${image.likes}</p>
       <p class="views"><strong>Views</strong><br>${image.views}</p>
@@ -63,13 +72,18 @@ function showImages(images) {
       img.src = image.webformatURL;
       img.alt = image.tags;
       img.style.width = '360px';
-      img.style.height = '200px';
-      imgItem.style.margin = '5px';
-      imgItem.appendChild(img);
-      imgItem.appendChild(imgInfo);
-      imgItem.style.border = '1px solid gray';
+      // img.style.height = '200px';
+      img.style.width = '100%';
+      img.style.height = '100%';
+      imgArea.style.listStyleType = 'none';
+      imgArea.style.margin = '5px';
+      imgArea.style.border = '1px solid gray';
 
-      container.appendChild(imgItem);
+      container.appendChild(imgArea);
+      imgArea.appendChild(imgItem);
+      imgItem.appendChild(imgLink);
+      imgLink.appendChild(img);
+      imgItem.appendChild(imgInfo);
       search.value = '';
     });
   }, 500);
