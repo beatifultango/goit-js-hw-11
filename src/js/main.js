@@ -46,7 +46,7 @@ form.addEventListener('submit', event => {
 
 function showImages(images) {
   const container = document.getElementById('images-place');
-  container.innerHTML = '<p id="loadingText">Loading images,please wait...</p>';
+  container.innerHTML = `<p id="loadingText">Loading images,please wait...</p>`;
   setTimeout(() => {
     container.innerHTML = '';
     container.style.display = 'grid';
